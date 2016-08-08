@@ -1,7 +1,7 @@
 function checkFinish() {
   if ($($(".box").text()) == $("#final").text()) {
     console.log("They're right!")
-    
+
   } else {
     console.log("Nope.")
     start();
@@ -9,11 +9,23 @@ function checkFinish() {
 }
 
 function doMath(array) {
-  $("#operations").css("display", "block");
+  $(".new").removeClass("new")
+  console.log("doing math")
+  $("#operations").slideDown("slow");
   $(".operation").on("click", function() {
     var result;
-    console.log("Doing operation", $(this).text(), "on ", array[0], "and", array[1])
-    switch ($(this).text()) {
+    if ($(this).text() != "+" || $(this).text() != "-") {
+      console.log("Non-unicode operator")
+      if ($(this).index() == 2) {
+        operator = "x"
+      } else {
+        operator = '/'
+      }
+    } else {
+      operator = $(this).text();
+    }
+    console.log("Doing operation", operator, "on ", array[0], "and", array[1])
+    switch (operator) {
       case "+":
         var result = parseInt(array[0].text) + parseInt(array[1].text)
         if (result[0] == 0) {
@@ -23,7 +35,7 @@ function doMath(array) {
       case "-":
         var result = array[0].text.toString() - array[1].text.toString()
         break;
-      case "X":
+      case "x":
         var result = array[0].text.toString() * array[1].text.toString()
         break;
       case "/":
@@ -49,10 +61,12 @@ function doMath(array) {
     // }
     $($(".box")[array[0].index]).text("");
     $($(".box")[array[1].index]).text(result);
+    $($(".box")[array[1].index]).addClass("new");
     $($(".box")[array[0].index]).remove();
-    $("#operations").css("display", "none");
-    $(".box").off("click");
+    $("#operations").slideUp("slow");
+    // $(".box").off("click");
     $(".operation").off("click");
+    $(".selected").removeClass("selected");
     var result;
     if ($(".box").length == 1) {
       checkFinish()
@@ -85,12 +99,17 @@ function setClick() {
           console.log("both have been clicked")
           doMath(clicked);
           clicked = [];
+          $(".box").off("click");
         }
     }
   })
 }
 
 function start() {
+  var template = Handlebars.templates["all.hbs"];
+  var context = {}
+  var html = template(context)
+  $("body").html(html)
   var currentTime = new Date()
   var month = (currentTime.getMonth() + 1).toString()
   if (month.length < 2) {

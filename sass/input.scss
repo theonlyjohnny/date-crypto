@@ -1,31 +1,87 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 @mixin box () {
   display: inline-flex;
   padding: 2em;
-  border: 1px solid black;
+  // border: 1px solid black;
   margin: auto;
+  border-radius: 15pt;
+  box-shadow: 0 1pt 1pt rgba(0, 0, 0, 0.3);
 }
 
 body {
+  font-family: "Roboto", sans-serif;
   background-color: red;
   #operations {
-    display: none;
+    // display: none;
+    width: 100vw;
+    height: 50vh;
+    // flex-wrap:  
+    position: fixed;
+    left: 0px;
+    background-color: #5A819C;
+    bottom: 0px;
+    border-radius: 10pt;
+    box-shadow: -0.5pt -2pt 1pt rgba(0, 0, 0, 0.2);
+    // border-top: 2px solid black;
+    #operationsUL {
+      display: flex;
+      flex-direction: rtl;
+      flex-wrap: wrap;
+      // position: relative;
+      // overflow: hidden;
+      // width: 100%;
+      align-items: flex-start;
+      justify-content: space-around;
+      .operation:hover {
+        opacity: 1;
+        box-shadow: 0 1pt 1pt rgba(0, 0, 0, 0.5);
+      }
+      .operation {
+        background-color: #425984;
+        display: inline-flex;
+        border-radius: 5pt;
+        opacity: 0.7;
+        // flex-position: flex-start;
+        // margin: auto;
+        font-size: 7vmin;
+        margin-top: 2vmax;
+        padding: 1em;
+        flex: 0 0 auto;
+        box-shadow: 0 1pt 1pt rgba(0, 0, 0, 0.3);
+        text-align: center;
+        align-self: flex-start;
+        // border: 1px solid black;
+      }
+    }
   }
   #boxes {
-    // border: 1px solid black;
+    position: absolute;
+    left: 0px;
+    width: 100vw;
     display: flex;
+    font-size: 4vmin;
     flex-direction: rtl;
     justify-content: space-around;
     #equals {
       font-size: 10vmax;
       display: inline-flex;
+      color: #57935D;
     }
     .selected {
-      border: 2px solid red;
+      opacity: 1 !important;
+    }
+    .box.new {
+      box-shadow: 0 1pt 1pt rgba(0, 0, 0, 0.5);
+      opacity: 0.9;
+      background-color: #F95940;
     }
     #final {
       @include box();
+      background-color: #7AC981;
     }
     .box {
+      opacity: 0.8;
+      background-color: #F97F57;
       @include box();
     }
   }
