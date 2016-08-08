@@ -1,0 +1,32 @@
+@mixin box () {
+  display: inline-flex;
+  padding: 2em;
+  border: 1px solid black;
+  margin: auto;
+}
+
+body {
+  background-color: red;
+  #operations {
+    display: none;
+  }
+  #boxes {
+    // border: 1px solid black;
+    display: flex;
+    flex-direction: rtl;
+    justify-content: space-around;
+    #equals {
+      font-size: 10vmax;
+      display: inline-flex;
+    }
+    .selected {
+      border: 2px solid red;
+    }
+    #final {
+      @include box();
+    }
+    .box {
+      @include box();
+    }
+  }
+}

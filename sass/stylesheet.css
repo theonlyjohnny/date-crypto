@@ -1,0 +1,25 @@
+body {
+  background-color: red; }
+  body #operations {
+    display: none; }
+  body #boxes {
+    display: flex;
+    flex-direction: rtl;
+    justify-content: space-around; }
+    body #boxes #equals {
+      font-size: 10vmax;
+      display: inline-flex; }
+    body #boxes .selected {
+      border: 2px solid red; }
+    body #boxes #final {
+      display: inline-flex;
+      padding: 2em;
+      border: 1px solid black;
+      margin: auto; }
+    body #boxes .box {
+      display: inline-flex;
+      padding: 2em;
+      border: 1px solid black;
+      margin: auto; }
+
+/*# sourceMappingURL=stylesheet.css.map */
